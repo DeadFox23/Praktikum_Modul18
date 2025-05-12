@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|c:\\users\\hartmasi\\documents\\github\\praktikum_modul18\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|c:\\users\\hartmasi\\documents\\github\\praktikum_modul18\\consoleapp1\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|solutionrelative:databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|c:\\users\\hartmasi\\documents\\github\\praktikum_modul18\\consoleapp1\\dbconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|solutionrelative:dbconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DatabaseService.cs",
+              "DocumentMoniker": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\DatabaseService.cs",
+              "RelativeDocumentMoniker": "DatabaseService.cs",
+              "ToolTip": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\DatabaseService.cs",
+              "RelativeToolTip": "DatabaseService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T11:56:12.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DBConnect.cs",
+              "DocumentMoniker": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\DBConnect.cs",
+              "RelativeDocumentMoniker": "DBConnect.cs",
+              "ToolTip": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\DBConnect.cs",
+              "RelativeToolTip": "DBConnect.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAC8AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T10:58:48.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T09:31:28.021Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

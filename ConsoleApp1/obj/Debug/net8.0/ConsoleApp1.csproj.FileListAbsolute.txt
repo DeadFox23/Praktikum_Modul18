@@ -13,3 +13,8 @@ C:\Users\hartmasi\Documents\GitHub\Praktikum_Modul18\ConsoleApp1\obj\Debug\net8.
 C:\Users\hartmasi\Documents\GitHub\Praktikum_Modul18\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.pdb
 C:\Users\hartmasi\Documents\GitHub\Praktikum_Modul18\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.genruntimeconfig.cache
 C:\Users\hartmasi\Documents\GitHub\Praktikum_Modul18\ConsoleApp1\obj\Debug\net8.0\ref\ConsoleApp1.dll
+C:\Users\hartmasi\Documents\GitHub\Praktikum_Modul18\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.AssemblyReference.cache
+C:\Users\hartmasi\Documents\GitHub\Praktikum_Modul18\ConsoleApp1\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\hartmasi\Documents\GitHub\Praktikum_Modul18\ConsoleApp1\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\hartmasi\Documents\GitHub\Praktikum_Modul18\ConsoleApp1\bin\Debug\net8.0\MySqlConnector.dll
+C:\Users\hartmasi\Documents\GitHub\Praktikum_Modul18\ConsoleApp1\obj\Debug\net8.0\ConsoleA.CB28C8CC.Up2Date

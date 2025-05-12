@@ -1,11 +1,16 @@
 ﻿using System;
 using System.IO;
+using ConsoleApp1;
+using System.Threading.Tasks;
+using MySqlConnector;
 
 class Program
 {
-	public static void Main(string[] args)
+	public static async Task Main(string[] args)
 	{
-		DataImport();
+		string bbb = "bitch";
+		//DataImport();
+		await DatabaseService.ConnectToDbAsync("INSERT INTO `bitch` (`bitch1`, `bitch2`) VALUES (NULL, ${bitch}), (NULL, 'aaaaaaaaaaaaaaa'); ");
 	}
 
 	private static void DataImport()
