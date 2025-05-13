@@ -32,36 +32,48 @@ namespace ConsoleApp1
 			await DBConnect.Instance.InitializeAsync();
 			var conn = DBConnect.Instance.GetConnection();
 
-			string query = " ";
-			using var cmd = new MySqlCommand(query, conn);
-
-			cmd.Parameters.AddWithValue("@firstname", firstname);
-			cmd.Parameters.AddWithValue("@lastname", lastname);
-			cmd.Parameters.AddWithValue("email", email);
-			cmd.Parameters.AddWithValue("password", password);
-
 			using var transaction = await conn.BeginTransactionAsync();
 
 			try
 			{
-				string insertadress = @"INSERT INTO `wohnort` (`Ort`, `PLZ`, `Straße`, `Hausnummer`) VALUES ('@ort', '@plz', '@straße', '@hausnummer');
-										Select Last_Insert_ID();";
+				//Adress
+				var cmdAdress = conn.CreateCommand();
+				cmdAdress.Transaction = transaction;
+				cmdAdress.CommandText = @"INSERT INTO `wohnort` (`Ort`, `PLZ`, `Straße`, `Hausnummer`) VALUES ('@ort', '@plz', '@straße', '@hausnummer');";
 
-				using var cmdAdress = new MySqlCommand(insertadress, conn, transaction);
 				cmdAdress.Parameters.AddWithValue("@ort",ort);
 				cmdAdress.Parameters.AddWithValue("@plz",plz);
 				cmdAdress.Parameters.AddWithValue("@straße", straße);
 				cmdAdress.Parameters.AddWithValue("@hausnummer", hausnummer);
+				await cmdAdress.ExecuteNonQueryAsync();
+				
+				//ID
+				var getIdCmd = conn.CreateCommand();
+				getIdCmd.Transaction = transaction;
+				getIdCmd.CommandText = "Select Last_Insert_ID();";
+				var oid = Convert.ToInt32(await getIdCmd.ExecuteScalarAsync());
+				
+				//Customer
+				var cmdCustomer = conn.CreateCommand();
+				cmdCustomer.Transaction = transaction;
+				cmdCustomer.CommandText = @"INSERT INTO `kunde` (`Vorname`, `Nachname`, `E-Mail`, `Passwort`, `OID`) VALUES ('@firstname', '@lastname', '@email', '@password', '@oid');";
+				cmdCustomer.Parameters.AddWithValue("@firstname", firstname);
+				cmdCustomer.Parameters.AddWithValue("@lastname", lastname);
+				cmdCustomer.Parameters.AddWithValue("@email", email);
+				cmdCustomer.Parameters.AddWithValue("@password", password);
+				cmdCustomer.Parameters.AddWithValue("@oid",oid);
+				await cmdCustomer.ExecuteNonQueryAsync();
 
-				var oid = Convert.ToInt32(await cmdAdress.ExecuteScalarAsync());
-
-				string insertCustomer = "@INSERT INTO `kunde` (`Vorname`, `Nachname`, `E-Mail`, `Passwort`, `OID`) VALUES ('@firstname', '@lastname', '@email', '@password', '@oid');";
-				using var cmdCustomer = new MySqlCommand(insertCustomer, conn);
-				cmdCustomer.Parameters.AddWithValue();
-				cmdCustomer.Parameters.AddWithValue();
-				cmdCustomer.Parameters.AddWithValue();
-				cmdCustomer.Parameters.AddWithValue();
+				//Commit transaction
+				await transaction.CommitAsync();
+				Console.WriteLine("Customer added");
 			}
+			catch (Exception ex) 
+			{
+				await transaction.RollbackAsync();
+				Console.WriteLine($"Error inserting customer: {ex.Message}"); 
+			}
+			finally { DBConnect.Instance.Close(); }
 		}
 	}
 }
