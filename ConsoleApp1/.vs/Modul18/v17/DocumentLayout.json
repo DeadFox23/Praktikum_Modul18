@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "DatabaseService.cs",
               "ToolTip": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\DatabaseService.cs",
               "RelativeToolTip": "DatabaseService.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAowE8AAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAIMAAAAAAAAAAAAIwJwAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-12T11:56:12.866Z",
               "EditorCaption": ""
@@ -47,7 +47,8 @@
               "RelativeToolTip": "DBConnect.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T10:58:48.832Z"
+              "WhenOpened": "2025-05-12T10:58:48.832Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

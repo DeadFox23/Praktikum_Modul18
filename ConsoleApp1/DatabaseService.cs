@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using System.Xml.Linq;
 using MySqlConnector;
 
 
@@ -65,13 +66,13 @@ namespace ConsoleApp1
 			}
 			finally { DBConnect.Instance.Close(); }
 		}
-		public static async Task InsertCustomersAsync(string firstname,string lastname, string email,string password, string ort, string plz, string straße, string hausnummer)
+		public static async Task<int> InsertCustomersAsync(string firstname,string lastname, string email,string password, string ort, string plz, string straße, string hausnummer)
 		{
 			int oid = await InsertLivingPlaceAsync(ort, plz, straße,hausnummer);
 			if (oid <= 0)
 			{
 				Console.WriteLine("eeeeeeeeeeeeeeeeeeeeeee");
-				return;
+				return -1;
 			}
 			Console.WriteLine(oid);
 			await DBConnect.Instance.InitializeAsync();
@@ -81,6 +82,7 @@ namespace ConsoleApp1
 
 			try
 			{
+
 				//Customer
 				var cmdCustomer = conn.CreateCommand();
 				cmdCustomer.Transaction = transaction;
@@ -92,14 +94,101 @@ namespace ConsoleApp1
 				cmdCustomer.Parameters.AddWithValue("@oid",oid);
 				await cmdCustomer.ExecuteNonQueryAsync();
 
+				var getIdCmd = conn.CreateCommand();
+				getIdCmd.Transaction = transaction;
+				getIdCmd.CommandText = "Select Last_Insert_ID();";
+				var kid = Convert.ToInt32(await getIdCmd.ExecuteScalarAsync());
+
 				//Commit transaction
 				await transaction.CommitAsync();
 				Console.WriteLine("Customer added");
+				return kid;
 			}
 			catch (Exception ex) 
 			{
 				await transaction.RollbackAsync();
-				Console.WriteLine($"Error inserting customer: {ex.Message}"); 
+				Console.WriteLine($"Error inserting customer: {ex.Message}");
+				return -1;
+			}
+			finally { DBConnect.Instance.Close(); }
+		}
+		public static async Task<int> InsertProductAsync(string name, string price, string amount, string description, string artNummer)
+		{
+			await DBConnect.Instance.InitializeAsync();
+			var conn = DBConnect.Instance.GetConnection();
+
+			using var transaction = await conn.BeginTransactionAsync();
+			try
+			{
+				//Product
+				var cmdProduct = conn.CreateCommand();
+				cmdProduct.Transaction = transaction;
+				cmdProduct.CommandText = @"INSERT INTO `produkte` (`Name`, `Verkaufspreis`, `Bestand`, `Beschreibung`, `Artikelnummer`) VALUES (@name, @price, @amount, @description, @artNummer) ;";
+
+				cmdProduct.Parameters.AddWithValue("@name", name);
+				cmdProduct.Parameters.AddWithValue("@price", price);
+				cmdProduct.Parameters.AddWithValue("@amount", amount);
+				cmdProduct.Parameters.AddWithValue("@description", description);
+				cmdProduct.Parameters.AddWithValue("@artNummer", artNummer);
+				await cmdProduct.ExecuteNonQueryAsync();
+
+				//ID
+				var getIdCmd = conn.CreateCommand();
+				getIdCmd.Transaction = transaction;
+				getIdCmd.CommandText = "Select Last_Insert_ID();";
+				var bradpid = Convert.ToInt32(await getIdCmd.ExecuteScalarAsync());
+
+				await transaction.CommitAsync();
+				Console.WriteLine("Product added");
+				return bradpid;
+			}
+			catch (Exception ex)
+			{
+				await transaction.RollbackAsync();
+				Console.WriteLine($"Error inserting customer: {ex.Message}");
+				return -1;
+			}
+			finally { DBConnect.Instance.Close(); }
+		}
+		public static async Task InsertOrderAsync(string firstname, string lastname, string email, string password, string ort, string plz, string straße, string hausnummer, string proName, string price, string amount, string description, string artNummer, string orderAmount)
+		{
+			int pid = await InsertProductAsync(proName, price, amount, description, artNummer);
+			if (pid <= 0)
+			{
+				Console.WriteLine("eeeeeeeeeeeeeeeeeeeeeee");
+				return;
+			}
+			int kid = await InsertCustomersAsync(ort, plz, straße, hausnummer, firstname, lastname, email, password);
+			if (kid <= 0)
+			{
+				Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaa");
+				return;
+			}
+			await DBConnect.Instance.InitializeAsync();
+			var conn = DBConnect.Instance.GetConnection();
+
+			using var transaction = await conn.BeginTransactionAsync();
+
+			try
+			{
+
+				//Customer
+				var cmdOrder = conn.CreateCommand();
+				cmdOrder.Transaction = transaction;
+				cmdOrder.CommandText = @"INSERT INTO `bestellungen` (`PID`, `KID`, `Menge`) VALUES (@pid, @kid, @amount);";
+				cmdOrder.Parameters.AddWithValue("@pid", pid);
+				cmdOrder.Parameters.AddWithValue("@kid", kid);
+				cmdOrder.Parameters.AddWithValue("@amount", orderAmount);
+				await cmdOrder.ExecuteNonQueryAsync();
+
+				//Commit transaction
+				await transaction.CommitAsync();
+				Console.WriteLine("Customer added");
+			}
+			catch (Exception ex)
+			{
+				await transaction.RollbackAsync();
+				Console.WriteLine($"Error inserting customer: {ex.Message}");
 			}
 			finally { DBConnect.Instance.Close(); }
 		}
