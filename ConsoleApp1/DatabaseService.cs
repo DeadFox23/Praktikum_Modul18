@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using MySqlConnector;
 
 
@@ -27,8 +28,52 @@ namespace ConsoleApp1
 			catch (Exception ex) { Console.WriteLine(ex.Message); }
 			finally { DBConnect.Instance.Close(); }
 		}
-		public static async Task InsertCustomersAsync(string firstname,string lastname, string email,string password, string ort,string plz,string straße, string hausnummer)
+		public static async Task<int> InsertLivingPlaceAsync(string ort, string plz, string straße, string hausnummer)
 		{
+			await DBConnect.Instance.InitializeAsync();
+			var conn = DBConnect.Instance.GetConnection();
+
+			using var transaction = await conn.BeginTransactionAsync();
+			try
+			{
+				//Adress
+				var cmdAdress = conn.CreateCommand();
+				cmdAdress.Transaction = transaction;
+				cmdAdress.CommandText = @"INSERT INTO `wohnort` (`Ort`, `PLZ`, `Straße`, `Hausnummer`) VALUES (@ort, @plz, @straße, @hausnummer);";
+
+				cmdAdress.Parameters.AddWithValue("@ort", ort);
+				cmdAdress.Parameters.AddWithValue("@plz", plz);
+				cmdAdress.Parameters.AddWithValue("@straße", straße);
+				cmdAdress.Parameters.AddWithValue("@hausnummer", hausnummer);
+				await cmdAdress.ExecuteNonQueryAsync();
+
+				//ID
+				var getIdCmd = conn.CreateCommand();
+				getIdCmd.Transaction = transaction;
+				getIdCmd.CommandText = "Select Last_Insert_ID();";
+				var oid = Convert.ToInt32(await getIdCmd.ExecuteScalarAsync());
+
+				await transaction.CommitAsync();
+				Console.WriteLine("LivingPlace added");
+				return oid;
+			}
+			catch (Exception ex)
+			{
+				await transaction.RollbackAsync();
+				Console.WriteLine($"Error inserting customer: {ex.Message}");
+				return -1;
+			}
+			finally { DBConnect.Instance.Close(); }
+		}
+		public static async Task InsertCustomersAsync(string firstname,string lastname, string email,string password, string ort, string plz, string straße, string hausnummer)
+		{
+			int oid = await InsertLivingPlaceAsync(ort, plz, straße,hausnummer);
+			if (oid <= 0)
+			{
+				Console.WriteLine("eeeeeeeeeeeeeeeeeeeeeee");
+				return;
+			}
+			Console.WriteLine(oid);
 			await DBConnect.Instance.InitializeAsync();
 			var conn = DBConnect.Instance.GetConnection();
 
@@ -36,27 +81,10 @@ namespace ConsoleApp1
 
 			try
 			{
-				//Adress
-				var cmdAdress = conn.CreateCommand();
-				cmdAdress.Transaction = transaction;
-				cmdAdress.CommandText = @"INSERT INTO `wohnort` (`Ort`, `PLZ`, `Straße`, `Hausnummer`) VALUES ('@ort', '@plz', '@straße', '@hausnummer');";
-
-				cmdAdress.Parameters.AddWithValue("@ort",ort);
-				cmdAdress.Parameters.AddWithValue("@plz",plz);
-				cmdAdress.Parameters.AddWithValue("@straße", straße);
-				cmdAdress.Parameters.AddWithValue("@hausnummer", hausnummer);
-				await cmdAdress.ExecuteNonQueryAsync();
-				
-				//ID
-				var getIdCmd = conn.CreateCommand();
-				getIdCmd.Transaction = transaction;
-				getIdCmd.CommandText = "Select Last_Insert_ID();";
-				var oid = Convert.ToInt32(await getIdCmd.ExecuteScalarAsync());
-				
 				//Customer
 				var cmdCustomer = conn.CreateCommand();
 				cmdCustomer.Transaction = transaction;
-				cmdCustomer.CommandText = @"INSERT INTO `kunde` (`Vorname`, `Nachname`, `E-Mail`, `Passwort`, `OID`) VALUES ('@firstname', '@lastname', '@email', '@password', '@oid');";
+				cmdCustomer.CommandText = @"INSERT INTO `kunde` (`Vorname`, `Nachname`, `E-Mail`, `Passwort`, `OID`) VALUES (@firstname, @lastname, @email, @password, @oid);";
 				cmdCustomer.Parameters.AddWithValue("@firstname", firstname);
 				cmdCustomer.Parameters.AddWithValue("@lastname", lastname);
 				cmdCustomer.Parameters.AddWithValue("@email", email);
