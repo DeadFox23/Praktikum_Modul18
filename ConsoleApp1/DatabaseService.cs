@@ -158,7 +158,7 @@ namespace ConsoleApp1
 				Console.WriteLine("eeeeeeeeeeeeeeeeeeeeeee");
 				return;
 			}
-			int kid = await InsertCustomersAsync(ort, plz, straße, hausnummer, firstname, lastname, email, password);
+			int kid = await InsertCustomersAsync(firstname, lastname, email, password, ort, plz, straße, hausnummer);
 			if (kid <= 0)
 			{
 				Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaa");
@@ -175,15 +175,15 @@ namespace ConsoleApp1
 				//Customer
 				var cmdOrder = conn.CreateCommand();
 				cmdOrder.Transaction = transaction;
-				cmdOrder.CommandText = @"INSERT INTO `bestellungen` (`PID`, `KID`, `Menge`) VALUES (@pid, @kid, @amount);";
+				cmdOrder.CommandText = @"INSERT INTO `bestellungen` (`PID`, `KID`, `Menge`) VALUES (@pid, @kid, @orderAmount);";
 				cmdOrder.Parameters.AddWithValue("@pid", pid);
 				cmdOrder.Parameters.AddWithValue("@kid", kid);
-				cmdOrder.Parameters.AddWithValue("@amount", orderAmount);
+				cmdOrder.Parameters.AddWithValue("@orderAmount", orderAmount);
 				await cmdOrder.ExecuteNonQueryAsync();
 
 				//Commit transaction
 				await transaction.CommitAsync();
-				Console.WriteLine("Customer added");
+				Console.WriteLine("Data added");
 			}
 			catch (Exception ex)
 			{

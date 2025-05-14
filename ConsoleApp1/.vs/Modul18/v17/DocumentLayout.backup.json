@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|c:\\users\\hartmasi\\documents\\github\\praktikum_modul18\\consoleapp1\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|solutionrelative:databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|c:\\users\\hartmasi\\documents\\github\\praktikum_modul18\\consoleapp1\\csvimporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|solutionrelative:csvimporter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|c:\\users\\hartmasi\\documents\\github\\praktikum_modul18\\consoleapp1\\recordmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|solutionrelative:recordmap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|c:\\users\\hartmasi\\documents\\github\\praktikum_modul18\\consoleapp1\\csvrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|solutionrelative:csvrecord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|c:\\users\\hartmasi\\documents\\github\\praktikum_modul18\\consoleapp1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|c:\\users\\hartmasi\\documents\\github\\praktikum_modul18\\consoleapp1\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|solutionrelative:databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DCC53143-2407-4011-86A8-DC935A20E57C}|ConsoleApp1.csproj|c:\\users\\hartmasi\\documents\\github\\praktikum_modul18\\consoleapp1\\dbconnect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,24 +34,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RecordMap.cs",
+              "DocumentMoniker": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\RecordMap.cs",
+              "RelativeDocumentMoniker": "RecordMap.cs",
+              "ToolTip": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\RecordMap.cs",
+              "RelativeToolTip": "RecordMap.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T13:23:46.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CsvImporter.cs",
+              "DocumentMoniker": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\CsvImporter.cs",
+              "RelativeDocumentMoniker": "CsvImporter.cs",
+              "ToolTip": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\CsvImporter.cs",
+              "RelativeToolTip": "CsvImporter.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAuwCMAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T12:39:27.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CsvRecord.cs",
+              "DocumentMoniker": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\CsvRecord.cs",
+              "RelativeDocumentMoniker": "CsvRecord.cs",
+              "ToolTip": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\CsvRecord.cs",
+              "RelativeToolTip": "CsvRecord.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T12:38:19.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "DatabaseService.cs",
               "DocumentMoniker": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\DatabaseService.cs",
               "RelativeDocumentMoniker": "DatabaseService.cs",
-              "ToolTip": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\DatabaseService.cs*",
-              "RelativeToolTip": "DatabaseService.cs*",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAwwFcAAAB8AAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\DatabaseService.cs",
+              "RelativeToolTip": "DatabaseService.cs",
+              "ViewState": "AgIAAJoAAAAAAAAAAAAowK4AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-12T11:56:12.866Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "DBConnect.cs",
               "DocumentMoniker": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\DBConnect.cs",
               "RelativeDocumentMoniker": "DBConnect.cs",
@@ -47,19 +98,21 @@
               "RelativeToolTip": "DBConnect.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T10:58:48.832Z"
+              "WhenOpened": "2025-05-12T10:58:48.832Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\hartmasi\\Documents\\GitHub\\Praktikum_Modul18\\ConsoleApp1\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T09:31:28.021Z"
+              "WhenOpened": "2025-05-12T09:31:28.021Z",
+              "EditorCaption": ""
             }
           ]
         }
