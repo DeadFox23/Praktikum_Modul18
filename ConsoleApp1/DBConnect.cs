@@ -29,7 +29,7 @@ namespace ConsoleApp1
 			try
             {
                 await connection.OpenAsync();
-                Console.WriteLine("MySql connection open");
+                //Console.WriteLine("MySql connection open");
             }
             catch (MySqlException e)
             {
@@ -48,7 +48,7 @@ namespace ConsoleApp1
             if(connection!=null&& connection.State == System.Data.ConnectionState.Open)
             {
                 connection.Close();
-                Console.WriteLine("SQL connection closed");
+                //Console.WriteLine("SQL connection closed");
             }
         }
 

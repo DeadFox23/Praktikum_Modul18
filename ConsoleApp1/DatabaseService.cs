@@ -55,7 +55,7 @@ namespace ConsoleApp1
 				var oid = Convert.ToInt32(await getIdCmd.ExecuteScalarAsync());
 
 				await transaction.CommitAsync();
-				Console.WriteLine("LivingPlace added");
+				//Console.WriteLine("LivingPlace added");
 				return oid;
 			}
 			catch (Exception ex)
@@ -74,7 +74,6 @@ namespace ConsoleApp1
 				Console.WriteLine("eeeeeeeeeeeeeeeeeeeeeee");
 				return -1;
 			}
-			Console.WriteLine(oid);
 			await DBConnect.Instance.InitializeAsync();
 			var conn = DBConnect.Instance.GetConnection();
 
@@ -101,7 +100,7 @@ namespace ConsoleApp1
 
 				//Commit transaction
 				await transaction.CommitAsync();
-				Console.WriteLine("Customer added");
+				//Console.WriteLine("Customer added");
 				return kid;
 			}
 			catch (Exception ex) 
@@ -139,7 +138,7 @@ namespace ConsoleApp1
 				var bradpid = Convert.ToInt32(await getIdCmd.ExecuteScalarAsync());
 
 				await transaction.CommitAsync();
-				Console.WriteLine("Product added");
+				//Console.WriteLine("Product added");
 				return bradpid;
 			}
 			catch (Exception ex)
@@ -183,7 +182,7 @@ namespace ConsoleApp1
 
 				//Commit transaction
 				await transaction.CommitAsync();
-				Console.WriteLine("Data added");
+				//Console.WriteLine("Data added");
 			}
 			catch (Exception ex)
 			{

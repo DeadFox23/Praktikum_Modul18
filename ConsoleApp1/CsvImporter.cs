@@ -21,7 +21,6 @@ namespace ConsoleApp1
 
 			foreach (var record in records)
 			{
-				Console.WriteLine("ahhhh");
 				try
 				{
 					await DatabaseService.InsertOrderAsync(
@@ -39,7 +38,6 @@ namespace ConsoleApp1
 						record.Description,
 						record.ArtNummer,
 						record.OrderAmount);
-					Console.WriteLine("aaaaaaaaa");
 				}
 				catch (Exception e)
 				{
@@ -47,6 +45,7 @@ namespace ConsoleApp1
 				}
 			
 			}
+			Console.WriteLine("Data Imported");
 		}
 	}
 }
