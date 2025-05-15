@@ -14,21 +14,6 @@ namespace ConsoleApp1
 {
 	public static class DatabaseService
 	{
-		public static async Task ConnectToDbAsync(string query)
-		{
-			await DBConnect.Instance.InitializeAsync();
-
-			var conn = DBConnect.Instance.GetConnection();
-			using var cmd = new MySqlCommand(query, conn);
-
-			try
-			{
-				var result = await cmd.ExecuteScalarAsync();
-				Console.WriteLine($"Querry result:{result}");
-			}
-			catch (Exception ex) { Console.WriteLine(ex.Message); }
-			finally { DBConnect.Instance.Close(); }
-		}
 		public static async Task<int> InsertLivingPlaceAsync(string ort, string plz, string straße, string hausnummer)
 		{
 			await DBConnect.Instance.InitializeAsync();
@@ -55,7 +40,6 @@ namespace ConsoleApp1
 				var oid = Convert.ToInt32(await getIdCmd.ExecuteScalarAsync());
 
 				await transaction.CommitAsync();
-				//Console.WriteLine("LivingPlace added");
 				return oid;
 			}
 			catch (Exception ex)
@@ -71,7 +55,7 @@ namespace ConsoleApp1
 			int oid = await InsertLivingPlaceAsync(ort, plz, straße,hausnummer);
 			if (oid <= 0)
 			{
-				Console.WriteLine("eeeeeeeeeeeeeeeeeeeeeee");
+				Console.WriteLine("Error Inserting Living Place");
 				return -1;
 			}
 			await DBConnect.Instance.InitializeAsync();
@@ -100,7 +84,6 @@ namespace ConsoleApp1
 
 				//Commit transaction
 				await transaction.CommitAsync();
-				//Console.WriteLine("Customer added");
 				return kid;
 			}
 			catch (Exception ex) 
@@ -138,7 +121,6 @@ namespace ConsoleApp1
 				var bradpid = Convert.ToInt32(await getIdCmd.ExecuteScalarAsync());
 
 				await transaction.CommitAsync();
-				//Console.WriteLine("Product added");
 				return bradpid;
 			}
 			catch (Exception ex)
@@ -154,13 +136,13 @@ namespace ConsoleApp1
 			int pid = await InsertProductAsync(proName, price, amount, description, artNummer);
 			if (pid <= 0)
 			{
-				Console.WriteLine("eeeeeeeeeeeeeeeeeeeeeee");
+				Console.WriteLine("Error Inserting Product");
 				return;
 			}
 			int kid = await InsertCustomersAsync(firstname, lastname, email, password, ort, plz, straße, hausnummer);
 			if (kid <= 0)
 			{
-				Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaa");
+				Console.WriteLine("Error Inserting Customer");
 				return;
 			}
 			await DBConnect.Instance.InitializeAsync();
@@ -182,7 +164,6 @@ namespace ConsoleApp1
 
 				//Commit transaction
 				await transaction.CommitAsync();
-				//Console.WriteLine("Data added");
 			}
 			catch (Exception ex)
 			{

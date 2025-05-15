@@ -11,6 +11,7 @@ namespace ConsoleApp1
 	{
 		public RecordMap()
 		{
+			//Festlegen von dem Mapping
 			Map(m => m.Vorname).Index(0);
 			Map(m => m.Nachname).Index(1);
 			Map(m => m.Email).Index(2);
