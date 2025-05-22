@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -18,7 +19,6 @@ namespace ConsoleApp1
 		{
 			await DBConnect.Instance.InitializeAsync();
 			var conn = DBConnect.Instance.GetConnection();
-
 			using var transaction = await conn.BeginTransactionAsync();
 			try
 			{
@@ -52,6 +52,7 @@ namespace ConsoleApp1
 		}
 		public static async Task<int> InsertCustomersAsync(string firstname,string lastname, string email,string password, string ort, string plz, string straße, string hausnummer)
 		{
+			
 			int oid = await InsertLivingPlaceAsync(ort, plz, straße,hausnummer);
 			if (oid <= 0)
 			{
@@ -62,7 +63,7 @@ namespace ConsoleApp1
 			var conn = DBConnect.Instance.GetConnection();
 
 			using var transaction = await conn.BeginTransactionAsync();
-
+			
 			try
 			{
 
@@ -153,7 +154,7 @@ namespace ConsoleApp1
 			try
 			{
 
-				//Customer
+				//Order
 				var cmdOrder = conn.CreateCommand();
 				cmdOrder.Transaction = transaction;
 				cmdOrder.CommandText = @"INSERT INTO `bestellungen` (`PID`, `KID`, `Menge`) VALUES (@pid, @kid, @orderAmount);";
@@ -169,6 +170,68 @@ namespace ConsoleApp1
 			{
 				await transaction.RollbackAsync();
 				Console.WriteLine($"Error inserting customer: {ex.Message}");
+			}
+			finally { DBConnect.Instance.Close(); }
+		}
+		public static async Task InsertOrderAsyncShort(string kid, string atk, string orderAmount)
+		{
+			int pid = await GetPid(atk);
+			if (pid <= 0)
+			{
+				Console.WriteLine("No Product Found");
+				return;
+			}
+
+			await DBConnect.Instance.InitializeAsync();
+			var conn = DBConnect.Instance.GetConnection();
+
+			using var transaction = await conn.BeginTransactionAsync();
+			
+
+			try
+			{
+				var cmdOrder = conn.CreateCommand();
+				cmdOrder.Transaction = transaction;
+				cmdOrder.CommandText = @"INSERT INTO `bestellungen` (`PID`, `KID`, `Menge`) VALUES (@pid, @kid, @orderAmount);";
+				cmdOrder.Parameters.AddWithValue("@pid", pid);
+				cmdOrder.Parameters.AddWithValue("@kid", kid);
+				cmdOrder.Parameters.AddWithValue("@orderAmount", orderAmount);
+				await cmdOrder.ExecuteNonQueryAsync();
+
+				//Commit transaction
+				await transaction.CommitAsync();
+			}
+			catch (Exception ex)
+			{
+				await transaction.RollbackAsync();
+				Console.WriteLine($"Error inserting customer: {ex.Message}");
+			}
+			finally { DBConnect.Instance.Close(); }
+		}
+		private static async Task<int> GetPid(string atk)
+		{
+			await DBConnect.Instance.InitializeAsync();
+			var conn = DBConnect.Instance.GetConnection();
+
+			using var transaction = await conn.BeginTransactionAsync();
+			try
+			{
+				var cmd = conn.CreateCommand();
+				cmd.Transaction = transaction;
+				cmd.CommandText = @"SELECT PID from produkte WHERE Artikelnummer = @atk;";
+				cmd.Parameters.AddWithValue("@atk", atk);
+				var pid = Convert.ToInt32(await cmd.ExecuteScalarAsync());
+
+				await transaction.CommitAsync();
+				//Console.WriteLine($"pid {pid}");
+				return pid;
+			}
+			catch (Exception ex)
+			{
+				await transaction.RollbackAsync();
+				Console.WriteLine($"Error getting PID: {ex.Message}");
+				Console.WriteLine("wrong");
+				return -1;
 			}
 			finally { DBConnect.Instance.Close(); }
 		}
