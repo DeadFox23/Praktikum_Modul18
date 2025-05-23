@@ -71,6 +71,7 @@ namespace ConsoleApp1
 				var cmdCustomer = conn.CreateCommand();
 				cmdCustomer.Transaction = transaction;
 				cmdCustomer.CommandText = @"INSERT INTO `kunde` (`Vorname`, `Nachname`, `E-Mail`, `Passwort`, `OID`) VALUES (@firstname, @lastname, @email, @password, @oid);";
+				
 				cmdCustomer.Parameters.AddWithValue("@firstname", firstname);
 				cmdCustomer.Parameters.AddWithValue("@lastname", lastname);
 				cmdCustomer.Parameters.AddWithValue("@email", email);
